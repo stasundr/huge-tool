@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: Promisify redis with bluebird
+
 let redis = require('redis');
 let {port, host, auth} = require('../config').redis;
 
