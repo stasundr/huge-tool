@@ -3,6 +3,8 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import Map from '../map';
+
 export default class AppTabs extends React.Component {
     render() {
         const { selectTab, currentTab } = this.props;
@@ -23,6 +25,7 @@ export default class AppTabs extends React.Component {
                 </TabPanel>
                 <TabPanel>
                     <h2>Hello from Map</h2>
+                    <Map/>
                 </TabPanel>
             </Tabs>
         )
