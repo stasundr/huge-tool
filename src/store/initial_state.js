@@ -7,6 +7,7 @@ const initialState = {
 
     mapCenterLat: 59.938043,
     mapCenterLng: 30.337157,
+    mapZoom: 3,
 
     samples: [
         {

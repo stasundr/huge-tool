@@ -10,6 +10,7 @@ export default class Map extends React.Component {
             samples,
             mapCenterLat,
             mapCenterLng,
+            mapZoom,
             onClick,
             onChange
         } = this.props;
@@ -19,7 +20,7 @@ export default class Map extends React.Component {
                 <GoogleMap
                     bootstrapURLKeys={{key: "AIzaSyCvXDv3NmjBC2D85QIKJ8ZmKq-K9jCuZ5A"}}
                     center={[mapCenterLat, mapCenterLng]}
-                    zoom={1}
+                    zoom={mapZoom}
                     onClick={onClick}
                     onChange={onChange}
                 >
