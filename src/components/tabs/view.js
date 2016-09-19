@@ -5,9 +5,10 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 export default class AppTabs extends React.Component {
     render() {
+        const { selectTab, currentTab } = this.props;
 
         return (
-            <Tabs onSelect={this.props.selectTab}>
+            <Tabs onSelect={selectTab} selectedIndex={currentTab}>
                 <TabList>
                     <Tab>Dataset</Tab>
                     <Tab>Tasks</Tab>

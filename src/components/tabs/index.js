@@ -6,7 +6,7 @@ import { selectTab } from './duck';
 
 function mapStateToProps(state) {
     return {
-
+        currentTab: state.currentTab
     }
 }
 
