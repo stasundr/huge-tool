@@ -3,6 +3,7 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import Table from '../table';
 import Map from '../map';
 
 export default class AppTabs extends React.Component {
@@ -18,14 +19,21 @@ export default class AppTabs extends React.Component {
                 </TabList>
 
                 <TabPanel>
-                    <h2>Hello from Dataset</h2>
+                    <div className="row">
+                        <div className="col col-12">
+                            <Table/>
+                        </div>
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <h2>Hello from Tasks</h2>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Hello from Map</h2>
-                    <Map/>
+                    <div className="row">
+                        <div className="col col-12">
+                            <Map/>
+                        </div>
+                    </div>
                 </TabPanel>
             </Tabs>
         )
