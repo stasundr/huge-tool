@@ -6,7 +6,7 @@ import component from './view';
 
 function mapStateToProps(state) {
     return {
-
+        
     }
 }
 

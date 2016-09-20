@@ -15,6 +15,13 @@ export default class Map extends React.Component {
             onChange
         } = this.props;
 
+        const markers = samples.filter(e => parseFloat(e.lat) && parseFloat(e.lng));
+        const nodes = markers.map(marker => `${marker.lat}, ${marker.lng}`);
+
+        let counts = {};
+        nodes.forEach(node => counts[node] = counts[node] ? counts[node] + 1 : 1);
+
+
         return (
             <div style={{height: window.innerHeight - 200}}>
                 <GoogleMap
@@ -25,9 +32,14 @@ export default class Map extends React.Component {
                     onChange={onChange}
                 >
                     {
-                        samples
-                            .filter(e => parseFloat(e.lat) && parseFloat(e.lng))
-                            .map(e => <Marker key={e.id} lat={e.lat} lng={e.lng}/>)
+                        markers.map(e =>
+                            <Marker
+                                key={e.id}
+                                lat={e.lat}
+                                lng={e.lng}
+                                number={counts[`${e.lat}, ${e.lng}`]}
+                            />
+                        )
                     }
                 </GoogleMap>
             </div>
