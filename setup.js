@@ -6,24 +6,15 @@ const async = require('async');
 const redis = require('./modules/redis');
 const { prefix } = require('./config').redis;
 
-const queue = async.queue((sample, callback) => callback(sample));
-const worker = {
-    updateSample: (sample) => {
-        return new Promise((fulfill, reject) => {
-            redis.set(`${prefix}sample:${sample.id}`, JSON.stringify(sample), err => {
-                if (err) reject(err);
-                else fulfill(sample)
-            })
-        });
-    },
+const setSample = (sample) => {
+    const key = `${prefix}sample:${sample.id}`;
 
-    addSample: (sample) => {
-        worker
-            .updateSample(sample)
-            .then(sample => queue.push(sample, () => console.log(`Sample ${sample.id} added to redis`)));
-    }
+    return redis.multi()
+        .set(key, JSON.stringify(sample))
+        .rpush(`${prefix}dataset`, key)
+        .execAsync();
 };
-
+const queue = async.queue((sample, callback) => setSample(sample).then(callback));
 const samples = [
     {
         id: 'I0518',
@@ -60,6 +51,11 @@ const samples = [
         lng: '26.98361111'
     }
 ];
-samples.forEach(sample => worker.addSample(sample));
 
-redis.quit();
+redis.del(`${prefix}dataset`, err => {
+    queue.push(samples, err => {});
+    queue.drain = () => {
+        redis.quit();
+        console.log('Done!');
+    };
+});
