@@ -9,15 +9,16 @@ const initialState = {
     mapCenterLng: 30.337157,
     mapZoom: 3,
 
+    sample_ids: ['1', '2'],
     samples: [
         {
-            id: 1,
+            id: '1',
             lat: 50,
             lng: 50
         },
 
         {
-            id: 2,
+            id: '2',
             lat: 30,
             lng: 60
         }

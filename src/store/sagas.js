@@ -13,8 +13,8 @@
     }
 
     function* asyncDatasetFetch() {
-        const payload = yield call(fetchDataset);
-        yield put({ type: _c.DATASET_FETCH_SUCCEEDED, payload });
+        const sample_ids = yield call(fetchDataset);
+        yield put({ type: _c.DATASET_FETCH_SUCCEEDED, sample_ids });
     }
 
     function* watchDataset() {
