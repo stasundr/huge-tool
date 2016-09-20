@@ -10,7 +10,12 @@ const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case _c.DATASET_FETCH_SUCCEEDED:
             return Object.assign({}, state, {
-                sample_ids: action.sample_ids
+                sample_ids: action.payload.sample_ids
+            });
+
+        case _c.SAMPLE_FETCH_SUCCEEDED:
+            return Object.assign({}, state, {
+                samples: [...state.samples, action.payload]
             });
 
         default:

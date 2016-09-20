@@ -24,7 +24,11 @@ export default class Map extends React.Component {
                     onClick={onClick}
                     onChange={onChange}
                 >
-                    { samples.map(e => <Marker key={e.id} lat={e.lat} lng={e.lng}/>) }
+                    {
+                        samples
+                            .filter(e => parseFloat(e.lat) && parseFloat(e.lng))
+                            .map(e => <Marker key={e.id} lat={e.lat} lng={e.lng}/>)
+                    }
                 </GoogleMap>
             </div>
         )
