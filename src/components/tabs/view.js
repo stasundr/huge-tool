@@ -8,7 +8,7 @@ import Map from '../map';
 
 export default class AppTabs extends React.Component {
     render() {
-        const { selectTab, currentTab } = this.props;
+        const { selectTab, currentTab, state } = this.props;
 
         return (
             <Tabs onSelect={selectTab} selectedIndex={currentTab}>
@@ -16,6 +16,7 @@ export default class AppTabs extends React.Component {
                     <Tab>Dataset</Tab>
                     <Tab>Tasks</Tab>
                     <Tab>Map</Tab>
+                    <Tab>Share</Tab>
                 </TabList>
 
                 <TabPanel>
@@ -32,6 +33,13 @@ export default class AppTabs extends React.Component {
                     <div className="row">
                         <div className="col col-12">
                             <Map/>
+                        </div>
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className="row">
+                        <div className="col col-12">
+                            {JSON.stringify(state)}
                         </div>
                     </div>
                 </TabPanel>

@@ -91,6 +91,33 @@ const samples = [
         sex: 'M',
         lat: '32.58472222',
         lng: '35.01694444'
+    },
+
+    {
+        id: 'Ul5',
+        sex: 'F',
+        lat: '52.37',
+        lng: '140.45',
+        population: 'Ulchi',
+        country: 'Russia'
+    },
+
+    {
+        id: 'Tuba20',
+        sex: 'F',
+        lat: '51.13333333',
+        lng: '87',
+        population: 'Tubalar',
+        country: 'Russia'
+    },
+
+    {
+        id: 'Tuba13',
+        sex: 'F',
+        lat: '51.13333333',
+        lng: '87',
+        population: 'Tubalar',
+        country: 'Russia'
     }
 ];
 

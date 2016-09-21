@@ -25,6 +25,7 @@ export default class DatasetTable extends React.Component {
                     header={<Cell>Sample ID</Cell>}
                     cell={<TextCell data={samples} col='id' />}
                     width={100}
+                    fixed
                 />
                 <Column
                     header={<Cell>Sex</Cell>}
@@ -39,6 +40,11 @@ export default class DatasetTable extends React.Component {
                 <Column
                     header={<Cell>Longitude</Cell>}
                     cell={<TextCell data={samples} col='lng' />}
+                    width={120}
+                />
+                <Column
+                    header={<Cell>Population</Cell>}
+                    cell={<TextCell data={samples} col='population' />}
                     width={120}
                 />
             </Table>
