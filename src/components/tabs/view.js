@@ -5,10 +5,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Table from '../table';
 import Map from '../map';
+import Share from '../share';
 
 export default class AppTabs extends React.Component {
     render() {
-        const { selectTab, currentTab, state } = this.props;
+        const { selectTab, currentTab } = this.props;
 
         return (
             <Tabs onSelect={selectTab} selectedIndex={currentTab}>
@@ -39,7 +40,7 @@ export default class AppTabs extends React.Component {
                 <TabPanel>
                     <div className="row">
                         <div className="col col-12">
-                            {JSON.stringify(state)}
+                            <Share/>
                         </div>
                     </div>
                 </TabPanel>

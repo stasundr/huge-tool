@@ -5,6 +5,7 @@ import initialState from './initial_state';
 import _c from '../consts';
 import tabsReducer from '../components/tabs/duck';
 import mapReducer from '../components/map/duck';
+import shareReducer from '../components/share/duck';
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -27,7 +28,10 @@ const rootReducer = (state = initialState, action) => {
     return appReducer(
         mapReducer(
             tabsReducer(
-                state,
+                shareReducer(
+                    state,
+                    action
+                ),
                 action
             ),
             action

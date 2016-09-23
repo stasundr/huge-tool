@@ -2,6 +2,7 @@
 
 const
     express = require('express'),
+    bodyParser = require('body-parser'),
     redis = require('../modules/redis'),
     { prefix } = require('../config').redis,
     router = express.Router();
@@ -16,6 +17,21 @@ router.get('/sample/:sample_id', (req, res) => {
     redis.get(req.params.sample_id, (err, data) =>
         res.json(JSON.parse(data))
     );
+});
+
+router.post('/export', bodyParser.json(), (req, res) => {
+    const state = JSON.stringify(req.body);
+    const token = 'iuytre'; // needs to be generated
+
+    redis.setAsync(`${prefix}state:${token}`, state).then(redis_res => {
+        if (redis_res == 'OK') res.json({ token });
+        else res.json({ error: 'VSE OCHE PLOHO' });
+    });
+});
+
+router.get('/import/:token', (req, res) => {
+    redis.getAsync(`${prefix}state:${req.params.token}`)
+        .then(data => res.json(JSON.parse(data)));
 });
 
 module.exports = router;

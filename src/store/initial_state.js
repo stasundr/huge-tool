@@ -2,7 +2,7 @@
 
 // Initial state for redux store
 const initialState = {
-    currentTab: 0,
+    currentTab: 3,
     lastTab: 0,
 
     mapCenterLat: 59.938043,
