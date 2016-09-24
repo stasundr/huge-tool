@@ -10,7 +10,8 @@ const initialState = {
     mapZoom: 3,
 
     sample_ids: [],
-    samples: []
+    samples: [],
+    value: ''
 };
 
 export default initialState;

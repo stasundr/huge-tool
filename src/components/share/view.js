@@ -2,6 +2,7 @@
 
 import React from 'react';
 import fetch from 'isomorphic-fetch';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class Share extends React.Component {
     constructor() {
@@ -11,11 +12,8 @@ export default class Share extends React.Component {
 
     render() {
         let { state, replaceState } = this.props;
-
-
-
         const _import = (token) => {
-            fetch(`/api/v1/import/${token}`)
+            fetch(`${token}`)
                 .then(res => res.json())
                 .then(json => replaceState(json));
         };
@@ -30,21 +28,35 @@ export default class Share extends React.Component {
                 body: JSON.stringify(state)
             })
                 .then(res => res.json())
-                .then(json => { this.setState({token: json.token})});
+                .then(json => { this.setState({value: `http://localhost:3000/${json.token}`})});
         };
 
         return (
             <div>
-                <button className="button" onClick={() => _import('iuytre')}>Import</button>
-                <button className="button" onClick={_export}>Export</button>
-                <br/>
-                {
-                    (this.state.token)
-                        ? `Your token is ${this.state.token}`
-                        : null
-                }
-            </div>
+                <div className="row">
+                    <div className="col col-12">
+                        <button className="button primary outline" onClick={_export}>Export</button>
+                        <button className="button primary outline" onClick={this.state.value ? () => _import(this.state.value) : null}>Import</button>
+                    </div>
+                </div>
+                <div className="row splice">
+                    <div className="col col-7">
+                        <div className="controls width-100">
+                            <input value={this.state.value}
+                                   type="text" name="search" placeholder="Link"
+                                onChange={({target: {value}}) => this.setState({value, copied: false})} />
+                        </div>
+                    </div>
+                    <div className="col col-5">
+                        <CopyToClipboard text={this.state.value}
+                                         onCopy={() => this.setState({copied: true})}>
+                            <button className="button primary">Copy</button>
+                        </CopyToClipboard>
 
+                        {this.state.copied ? <span style={{color: 'blue'}}>Copied.</span> : null}
+                    </div>
+                </div>
+            </div>
         )
     }
 }

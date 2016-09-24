@@ -38,11 +38,7 @@ export default class AppTabs extends React.Component {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="row">
-                        <div className="col col-12">
-                            <Share/>
-                        </div>
-                    </div>
+                    <Share/>
                 </TabPanel>
             </Tabs>
         )

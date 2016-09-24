@@ -8,7 +8,9 @@ const config = {
         port: 6379,
         auth: false,
         prefix: 'huge:'
-    }
+    },
+
+    SECRET: 'DoURememberTheMillionDollarDreamCarl'
 };
 
 module.exports = config;
