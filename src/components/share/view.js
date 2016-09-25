@@ -12,13 +12,13 @@ export default class Share extends React.Component {
 
     render() {
         let { state, replaceState } = this.props;
-        const _import = (token) => {
-            fetch(`${token}`)
-                .then(res => res.json())
-                .then(json => replaceState(json));
+        const _import = (token)=> {
+            fetch(token)
+                .then(res=> res.json())
+                .then(json=> replaceState(json));
         };
 
-        const _export = () => {
+        const _export = ()=> {
             fetch('/api/v1/export', {
                 method: 'POST',
                 headers: {
@@ -27,8 +27,8 @@ export default class Share extends React.Component {
                 },
                 body: JSON.stringify(state)
             })
-                .then(res => res.json())
-                .then(json => { this.setState({value: `http://localhost:3000/${json.token}`})});
+                .then(res=> res.json())
+                .then(json=> { this.setState({inputValue: `http://localhost:3000/${json.token}`})});
         };
 
         return (
@@ -36,20 +36,20 @@ export default class Share extends React.Component {
                 <div className="row">
                     <div className="col col-12">
                         <button className="button primary outline" onClick={_export}>Export</button>
-                        <button className="button primary outline" onClick={this.state.value ? () => _import(this.state.value) : null}>Import</button>
+                        <button className="button primary outline" onClick={this.state.inputValue ? ()=> _import(this.state.inputValue) : null}>Import</button>
                     </div>
                 </div>
                 <div className="row splice">
                     <div className="col col-7">
                         <div className="controls width-100">
-                            <input value={this.state.value}
+                            <input value={this.state.inputValue}
                                    type="text" name="search" placeholder="Link"
-                                onChange={({target: {value}}) => this.setState({value, copied: false})} />
+                                onChange={({target: {value}})=> this.setState({inputValue, copied: false})} />
                         </div>
                     </div>
                     <div className="col col-5">
-                        <CopyToClipboard text={this.state.value}
-                                         onCopy={() => this.setState({copied: true})}>
+                        <CopyToClipboard text={this.state.inputValue}
+                                         onCopy={()=> this.setState({copied: true})}>
                             <button className="button primary">Copy</button>
                         </CopyToClipboard>
 

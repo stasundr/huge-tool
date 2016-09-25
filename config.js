@@ -10,7 +10,7 @@ const config = {
         prefix: 'huge:'
     },
 
-    SECRET: 'DoURememberTheMillionDollarDreamCarl'
+    secret: 'DoURememberTheMillionDollarDreamCarl?'
 };
 
 module.exports = config;
